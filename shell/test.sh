@@ -31,7 +31,7 @@
              --conf hive.exec.dynamic.partition.mode=nonstrict \
              --conf spark.driver.maxResultSize=2048M \
              --conf "spark.executor.extraJavaOptions=-XX:+UseG1GC" \
-             --class com.coocaa.bigdata.spark.service.platform.StreamNrtPlatformToSyllaDB $bashpath "
+             --class com.apache.bigdata.spark.service.platform.StreamNrtPlatformToSyllaDB $bashpath "
     echo $run_cmd
    spark-submit ${run_cmd}
    if [ $? = 0 ]; then
