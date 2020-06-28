@@ -17,19 +17,16 @@
    echo "path===============================$bashpath"
    echo "today==============================$today"
       run_cmd=" --master yarn \
-	           --deploy-mode cluster \
-             --driver-memory 20g \
+	           --deploy-mode client \
+             --driver-memory 4g \
              --driver-cores 2 \
 			       --name testmodel \
              --executor-memory 36g \
              --num-executors 10 \
              --executor-cores 6 \
              --properties-file $xpath/src/main/resources/exteral.properties \
-             --conf hive.exec.dynamic.partition=true \
-             --conf hive.exec.dynamic.partition.mode=nonstrict \
-             --conf spark.driver.maxResultSize=2048M \
-             --conf "spark.executor.extraJavaOptions=-XX:+UseG1GC" \
-             --class com.apache.bigdata.spark.service.platform.StreamNrtPlatformToSyllaDB $bashpath "
+             --conf spark.executor.extraJavaOptions=-XX:+UseG1GC \
+             --class com.apache.bigdata.spark.service.platform.test $bashpath "
     echo $run_cmd
    spark-submit ${run_cmd}
    if [ $? = 0 ]; then
